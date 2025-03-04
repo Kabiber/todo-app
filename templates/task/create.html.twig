@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Task{% endblock %}
+
+{% block body %}
+    <h1>Создай задачу</h1>
+
+    <form method="post" class="card p-4">
+        {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="mb-3 form-check">
+            {{ form_label(form.completed, 'Завершить?', {'label_attr': {'class': 'form-check-label'}}) }}
+            {{ form_widget(form.completed, {'attr': {'class': 'form-check-input'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранит</button>
+        <a href="{{ path('task_index') }}" class="btn btn-secondary">Отмена</a>
+        {{ form_end(form) }}
+    </form>
+{% endblock %}

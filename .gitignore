@@ -1,0 +1,17 @@
+# Symfony default ignore rules
+/var/*
+!/var/.keep
+/vendor/
+/.env.local
+/.env.*.local
+
+# Composer files
+composer.phar
+
+# IDE files
+.idea/
+.vscode/
+
+# Other
+*.log
+*.sqlite

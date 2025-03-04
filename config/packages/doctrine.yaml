@@ -1,0 +1,17 @@
+doctrine:
+    dbal:
+        url: 'postgresql://postgres:OX-Yl13iS4@localhost:5432/todo_app'
+        driver: 'pdo_pgsql'
+        server_version: '17'
+        charset: UTF8
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: attribute # Используйте атрибуты
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App

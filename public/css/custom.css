@@ -1,0 +1,35 @@
+/* Стили для заголовков */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Стили для списка задач */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.task-item.completed {
+    background-color: #d4edda;
+    text-decoration: line-through;
+}
+
+/* Стили для кнопок */
+button {
+    margin-right: 10px;
+}
+
+/* Стили для форм */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
