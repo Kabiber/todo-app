@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Лист задач{% endblock %}
+{% block title %}Task List{% endblock %}
 
 {% block body %}
-    <h1>Лист задач</h1>
+    <h1 class="text-center mb-4">Список задач</h1>
 
-    <a href="{{ path('task_create') }}" class="btn btn-primary mb-3">Создать новую задачу</a>
+    <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3">Создать новую задачу</a>
 
-    <ul class="task-list">
+    <ul class="list-unstyled">
         {% for task in tasks %}
             <li class="task-item {% if task.isCompleted %}completed{% endif %}">
                 <strong>{{ task.title }}</strong> - {{ task.description }}
                 <div class="mt-2">
-                    <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning">Изменить</a>
+                    <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger">Удалить</a>
                 </div>
             </li>
         {% else %}
-            <p>No tasks found.</p>
+            <p class="text-center">Нет задач.</p>
         {% endfor %}
     </ul>
 {% endblock %}

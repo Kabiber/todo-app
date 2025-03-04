@@ -33,3 +33,11 @@ form {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Для маленьких экранов */
+@media (max-width: 768px) {
+    .task-list-container {
+        max-width: 100%; /* Убираем ограничение ширины */
+        padding: 15px; /* Уменьшаем отступы */
+    }
+}
