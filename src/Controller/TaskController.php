@@ -68,4 +68,15 @@ class TaskController extends AbstractController
 
         return $this->redirectToRoute('task_index');
     }
+    #[Route('/toggle/{id}', name: 'toggle_status')]
+    public function toggleStatus(Task $task, EntityManagerInterface $entityManager): Response
+    {
+        // Инвертируем статус задачи
+        $task->setCompleted(!$task->isCompleted());
+
+        // Сохраняем изменения
+        $entityManager->flush();
+
+        return $this->redirectToRoute('task_index');
+    }
 }

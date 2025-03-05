@@ -1,37 +1,191 @@
+/* Глобальные стили */
+body {
+    font-family: 'Space Mono', monospace; /* Шрифт по умолчанию */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Легкий фон для страницы */
+    color: #333; /* Цвет текста */
+}
+
 /* Стили для заголовков */
 h1 {
     text-align: center;
-    color: #333;
+    color: #2c3e50; /* Темно-синий цвет для заголовков */
+    font-family: 'Pacifico', cursive; /* Используем Pacifico для заголовков */
+    font-size: 2rem; /* Размер заголовка */
+    margin-bottom: 20px;
 }
 
+/* Стили для навигационной строки */
+.navbar {
+    font-family: 'Pacifico', cursive; /* Шрифт Pacifico */
+    background-color: rgba(33, 37, 41, 0.9); /* Темный фон с прозрачностью */
+    backdrop-filter: blur(10px); /* Размытие фона */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для навигационной строки */
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+    font-size: 5.4rem;
+    font-weight: 600; /* Сlightly bold */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #ffeb3b !important; /* Желтый цвет при наведении */
+}
+
+/* Стили для контейнера списка задач */
+.task-list-container {
+    max-width: 800px; /* Максимальная ширина контейнера */
+    margin: 50px auto; /* Отступы и центрирование */
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+}
+.task-item.important {
+    background: rgba(255, 87, 34, 0.2); /* Легко-красный фон */
+    border: 1px solid #ff5722; /* Красная граница */
+}
 /* Стили для списка задач */
 .task-list {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем внутренние отступы списка */
 }
 
 .task-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border: 1px solid #ddd; /* Легкая граница */
+    margin-bottom: 10px; /* Пробел между задачами */
+    padding: 15px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    font-family: 'Space Mono', monospace; /* Шрифт Space Mono */
+    font-size: 1rem; /* Размер шрифта */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход цвета и фона */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .task-item.completed {
-    background-color: #d4edda;
-    text-decoration: line-through;
+    background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
+    text-decoration: line-through; /* Подчеркивание для выполненных задач */
+    color: #6c757d; /* Серый цвет текста */
+    font-style: italic; /* Курсив для выполненных задач */
 }
 
 /* Стили для кнопок */
 button {
-    margin-right: 10px;
+    margin-right: 10px; /* Отступ справа */
+    font-family: 'Space Mono', monospace; /* Шрифт Space Mono */
+    font-size: 0.9rem; /* Размер шрифта */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
+}
+
+button:hover {
+    transform: scale(1.05); /* Небольшое увеличение при наведении */
 }
 
 /* Стили для форм */
 form {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 600px; /* Максимальная ширина формы */
+    margin: 0 auto; /* Центрирование формы */
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для формы */
+}
+
+input, textarea, button {
+    font-family: inherit; /* Наследует шрифт от родительского элемента */
+    font-size: inherit; /* Наследует размер шрифта */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Легкая граница */
+    border-radius: 5px; /* Закругленные углы */
+    transition: border-color 0.3s ease; /* Анимация границы */
+}
+
+input:focus, textarea:focus {
+    border-color: #2196f3; /* Синяя граница при фокусе */
+    outline: none; /* Убираем стандартный контур */
+}
+
+/* Дополнительные классы для Space Mono */
+.space-mono-regular {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.space-mono-bold {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.space-mono-regular-italic {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.space-mono-bold-italic {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Стили для кнопок в форме */
+.save-button {
+    background-color: #2196f3; /* Синий цвет */
+    border-color: #2196f3;
+    font-size: 0.9rem; /* Уменьшаем размер шрифта */
+    padding: 8px 16px; /* Уменьшаем внутренние отступы */
+    width: auto; /* Автоматическая ширина */
+}
+
+.save-button:hover {
+    background-color: #0d73d5; /* Темнее при наведении */
+}
+
+.cancel-button {
+    background-color: #f8f9fa; /* Светло-серый цвет */
+    color: #333; /* Темно-серый текст */
+    border-color: #ddd; /* Серая граница */
+    font-size: 0.9rem; /* Уменьшаем размер шрифта */
+    padding: 8px 16px; /* Уменьшаем внутренние отступы */
+    width: auto; /* Автоматическая ширина */
+}
+
+.cancel-button:hover {
+    background-color: #e9ecef; /* Сlightly darker gray при наведении */
+}
+
+/* Стили для кнопок в форме */
+.save-button {
+    background-color: #2196f3; /* Синий цвет */
+    border-color: #2196f3;
+    font-size: 0.9rem; /* Уменьшаем размер шрифта */
+    padding: 8px 16px; /* Уменьшаем внутренние отступы */
+    width: auto; /* Автоматическая ширина */
+}
+
+.save-button:hover {
+    background-color: #0d73d5; /* Темнее при наведении */
+}
+
+.cancel-button {
+    background-color: #f8f9fa; /* Светло-серый цвет */
+    color: #333; /* Темно-серый текст */
+    border-color: #ddd; /* Серая граница */
+    font-size: 0.9rem; /* Уменьшаем размер шрифта */
+    padding: 8px 16px; /* Уменьшаем внутренние отступы */
+    width: auto; /* Автоматическая ширина */
+}
+
+.cancel-button:hover {
+    background-color: #e9ecef; /* Сlightly darker gray при наведении */
 }
 
 /* Для маленьких экранов */
@@ -39,5 +193,22 @@ form {
     .task-list-container {
         max-width: 100%; /* Убираем ограничение ширины */
         padding: 15px; /* Уменьшаем отступы */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    }
+
+    .task-item {
+        font-size: 0.9rem; /* Уменьшаем размер шрифта */
+        padding: 10px;
+    }
+    .save-button, .cancel-button {
+        width: 100%; /* Полная ширина */
+        margin-bottom: 10px; /* Отступ между кнопками */
+    }
+
+    .save-button + .cancel-button {
+        margin-top: 10px; /* Отступ сверху для второй кнопки */
     }
 }

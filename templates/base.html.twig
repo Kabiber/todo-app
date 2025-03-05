@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>{% block title %}Todo App{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         /* Стили для фонового изображения */
         body {
@@ -14,43 +17,55 @@
             height: 100vh; /* Занимает всю высоту viewport */
         }
 
-        /* Стили для навигационной строки */
+        /* Глобальные стили */
+        body {
+            font-family: 'Space Mono', monospace; /* Шрифт по умолчанию */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шрифт для навигационной строки */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный чёрный фон */
-            backdrop-filter: blur(10px); /* Добавляет размытие для лучшей видимости */
+            font-family: 'Pacifico', cursive; /* Шрифт Pacifico */
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
         }
 
         .navbar-brand, .nav-link {
-            color: white !important; /* Белый текст для контраста */
+            color: white !important;
+            font-size: 1.2rem; /* Размер шрифта */
         }
 
-        /* Стили для контейнера списка задач */
+        /* Контейнер списка задач */
         .task-list-container {
-            background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
-            border-radius: 10px; /* Закруглённые углы */
-            padding: 20px; /* Отступы внутри контейнера */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для лучшего выделения */
-            max-width: 800px; /* Ограничиваем ширину контейнера */
-            margin: 50px auto; /* Центрируем контейнер по горизонтали */
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 50px auto;
         }
 
-        /* Стили для отдельных задач */
+        /* Стили для списка задач */
         .task-item {
-            background: rgba(255, 255, 255, 0.9); /* Более светлый фон для каждой задачи */
-            border: 1px solid #ddd; /* Лёгкая граница */
+            background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+            border: 1px solid #ddd; /* Легкая граница */
             margin-bottom: 10px; /* Пробел между задачами */
-            padding: 15px; /* Отступы внутри элемента задачи */
-            border-radius: 5px; /* Закруглённые углы */
+            padding: 15px; /* Внутренние отступы */
+            border-radius: 5px; /* Закругленные углы */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
+        }
+
+        .task-item:hover {
+            background: rgba(255, 255, 255, 1); /* Полностью белый фон при наведении */
+            transform: scale(1.02); /* Небольшое увеличение при наведении */
         }
 
         .task-item.completed {
-            background: rgba(212, 237, 218, 0.9); /* Зеленоватый фон для выполненных задач */
-            text-decoration: line-through; /* Подчёркивание для выполненных задач */
-        }
-
-        .container {
-            position: relative;
-            z-index: 1; /* Чтобы содержимое было поверх фона */
+            background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
+            text-decoration: line-through; /* Подчеркивание для выполненных задач */
+            color: #6c757d; /* Серый цвет текста */
+            font-style: italic; /* Курсив для выполненных задач */
         }
     </style>
 </head>
@@ -58,14 +73,14 @@
 <!-- Навигационная строка -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('task_index') }}">Ежедневник</a>
+        <a class="navbar-brand pacifico-regular" href="{{ path('task_index') }}">Ежедневник</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('task_create') }}">Создать задачу</a>
+                    <a class="nav-link pacifico-regular" href="{{ path('task_create') }}">Создать задачу</a>
                 </li>
             </ul>
         </div>
