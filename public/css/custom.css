@@ -50,13 +50,13 @@ h1 {
     font-weight: bold; /* Жирный шрифт */
     gap: 5px; /* Отступ между строками */
     padding: 10px; /* Внутренние отступы */
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный темный фон */
+
     border-radius: 5px; /* Закругленные углы */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для лучшего выделения */
 }
 
 .navbar-calendar span {
-    color: #ffffff; /* Жёлтый цвет для контраста */
+    color: #ffeb3b; /* Жёлтый цвет для контраста */
     font-size: 1rem; /* Размер шрифта */
 }
 
@@ -229,30 +229,7 @@ input:focus, textarea:focus {
 .timer.red {
     color: red; /* Красный цвет, когда время истекло */
 }
-/* Стили для кнопки-иконки календаря */
-.calendar-btn {
-    font-size: 1.2rem; /* Размер иконки */
-    color: #ffeb3b; /* Жёлтый цвет для контраста */
-    border: none; /* Убираем границу */
-    background-color: transparent; /* Прозрачный фон */
-    cursor: pointer; /* Изменяем курсор */
-    transition: transform 0.3s ease; /* Анимация при наведении */
-}
 
-.calendar-btn:hover {
-    transform: scale(1.2); /* Небольшое увеличение при наведении */
-}
-
-/* Стили для виджета календаря */
-.calendar-widget {
-    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
-    border: 1px solid #ddd; /* Легкая граница */
-    border-radius: 10px; /* Закругленные углы */
-    padding: 10px; /* Внутренние отступы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для выделения */
-    max-width: 300px; /* Максимальная ширина */
-    text-align: center; /* Выравнивание по центру */
-}
 /* Для маленьких экранов */
 @media (max-width: 768px) {
     /* Адаптивность контейнера задач */
@@ -260,21 +237,7 @@ input:focus, textarea:focus {
         max-width: 100%; /* Убираем ограничение ширины */
         padding: 15px; /* Уменьшаем отступы */
     }
-    .navbar-calendar {
-        flex-direction: row; /* Размещаем элементы горизонтально */
-        justify-content: space-between; /* Распределяем элементы равномерно */
-        width: 100%; /* Полная ширина */
-        padding: 5px; /* Уменьшаем отступы */
-    }
 
-    .calendar-btn {
-        font-size: 1rem; /* Уменьшаем размер иконки */
-    }
-
-    .calendar-widget {
-        max-width: 100%; /* Полная ширина */
-        margin-top: 10px; /* Отступ сверху */
-    }
     /* Адаптивность заголовков */
     h1 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
@@ -298,5 +261,9 @@ input:focus, textarea:focus {
         justify-content: space-between; /* Распределяем элементы равномерно */
         width: 100%; /* Полная ширина */
         padding: 5px; /* Уменьшаем отступы */
+        font-size: 1rem; /* Уменьшаем размер шрифта */
+    }
+    .navbar-calendar i {
+        font-size: 1rem; /* Уменьшаем иконки */
     }
 }
