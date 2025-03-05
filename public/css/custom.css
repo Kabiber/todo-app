@@ -26,8 +26,8 @@ h1 {
 
 .navbar-brand, .nav-link {
     color: white !important;
-    font-size: 5.4rem;
-    font-weight: 600; /* Сlightly bold */
+    font-size: 1.8rem; /* Уменьшил размер шрифта до более подходящего значения */
+    font-weight: 600; /* Жирный шрифт */
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Легкая тень */
     transition: color 0.3s ease;
@@ -46,10 +46,7 @@ h1 {
     padding: 20px; /* Внутренние отступы */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
 }
-.task-item.important {
-    background: rgba(255, 87, 34, 0.2); /* Легко-красный фон */
-    border: 1px solid #ff5722; /* Красная граница */
-}
+
 /* Стили для списка задач */
 .task-list {
     list-style-type: none; /* Убираем маркеры списка */
@@ -68,26 +65,60 @@ h1 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Выполненные задачи */
 .task-item.completed {
     background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
-    text-decoration: line-through; /* Подчеркивание для выполненных задач */
+    text-decoration: line-through; !* Подчеркивание для текста *!*/
     color: #6c757d; /* Серый цвет текста */
-    font-style: italic; /* Курсив для выполненных задач */
+    font-style: italic; /* Курсив для текста */
+}
+
+/* Исключаем кнопки из стиля .completed */
+.task-item.completed .btn {
+    text-decoration: none !important; /* Убираем подчеркивание */
+    color: inherit !important; /* Сохраняем оригинальный цвет текста */
+    font-style: normal !important; /* Убираем курсив */
+    background-color: initial !important; /* Возвращаем оригинальный фон */
+    border-color: initial !important; /* Возвращаем оригинальную границу */
+}
+
+/* Дополнительно: сохраняем стандартный стиль кнопок Bootstrap */
+.task-item.completed .btn-warning,
+.task-item.completed .btn-danger {
+    text-decoration: none !important; /* Убедитесь, что нет подчеркивания */
+    color: white !important; /* Текст остаётся белым */
+    font-style: normal !important; /* Нет курсива */
+    background-color: initial !important; /* Возвращаем оригинальный фон */
+    border-color: initial !important; /* Возвращаем оригинальную границу */
 }
 
 /* Стили для кнопок */
-button {
+.task-item .btn {
     margin-right: 10px; /* Отступ справа */
     font-family: 'Space Mono', monospace; /* Шрифт Space Mono */
     font-size: 0.9rem; /* Размер шрифта */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
 }
 
-button:hover {
+.task-item .btn:hover {
     transform: scale(1.05); /* Небольшое увеличение при наведении */
 }
 
-/* Стили для форм */
+/* Для кнопок "Edit" и "Delete" */
+.task-item.completed .btn-warning,
+.task-item.completed .btn-danger {
+    text-decoration: none !important; /* Убедитесь, что нет подчеркивания */
+    color: white !important; /* Текст остаётся белым */
+    font-style: normal !important; /* Нет курсива */
+    background-color: initial !important; /* Возвращаем оригинальный фон */
+    border-color: initial !important; /* Возвращаем оригинальную границу */
+}
+.task-item .btn-warning:hover,
+.task-item .btn-danger:hover {
+    transform: scale(1.1); /* Немного увеличиваем при наведении */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+}
+/* Стили для формы */
 form {
     max-width: 600px; /* Максимальная ширина формы */
     margin: 0 auto; /* Центрирование формы */
@@ -111,101 +142,23 @@ input:focus, textarea:focus {
     outline: none; /* Убираем стандартный контур */
 }
 
-/* Дополнительные классы для Space Mono */
-.space-mono-regular {
-    font-family: 'Space Mono', monospace;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.space-mono-bold {
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.space-mono-regular-italic {
-    font-family: 'Space Mono', monospace;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.space-mono-bold-italic {
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    font-style: italic;
-}
-
-/* Стили для кнопок в форме */
-.save-button {
-    background-color: #2196f3; /* Синий цвет */
-    border-color: #2196f3;
-    font-size: 0.9rem; /* Уменьшаем размер шрифта */
-    padding: 8px 16px; /* Уменьшаем внутренние отступы */
-    width: auto; /* Автоматическая ширина */
-}
-
-.save-button:hover {
-    background-color: #0d73d5; /* Темнее при наведении */
-}
-
-.cancel-button {
-    background-color: #f8f9fa; /* Светло-серый цвет */
-    color: #333; /* Темно-серый текст */
-    border-color: #ddd; /* Серая граница */
-    font-size: 0.9rem; /* Уменьшаем размер шрифта */
-    padding: 8px 16px; /* Уменьшаем внутренние отступы */
-    width: auto; /* Автоматическая ширина */
-}
-
-.cancel-button:hover {
-    background-color: #e9ecef; /* Сlightly darker gray при наведении */
-}
-
-/* Стили для кнопок в форме */
-.save-button {
-    background-color: #2196f3; /* Синий цвет */
-    border-color: #2196f3;
-    font-size: 0.9rem; /* Уменьшаем размер шрифта */
-    padding: 8px 16px; /* Уменьшаем внутренние отступы */
-    width: auto; /* Автоматическая ширина */
-}
-
-.save-button:hover {
-    background-color: #0d73d5; /* Темнее при наведении */
-}
-
-.cancel-button {
-    background-color: #f8f9fa; /* Светло-серый цвет */
-    color: #333; /* Темно-серый текст */
-    border-color: #ddd; /* Серая граница */
-    font-size: 0.9rem; /* Уменьшаем размер шрифта */
-    padding: 8px 16px; /* Уменьшаем внутренние отступы */
-    width: auto; /* Автоматическая ширина */
-}
-
-.cancel-button:hover {
-    background-color: #e9ecef; /* Сlightly darker gray при наведении */
-}
-
 /* Кастомизация чекбокса */
 .status-checkbox {
     position: relative;
-    width: 6em; /* Увеличиваем ширину */
-    height: 6em; /* Увеличиваем высоту */
-    margin-right: 10px; /* Отступ справа */
-    cursor: pointer; /* Изменяем курсор */
+    width: 2rem; /* Увеличиваем размер чекбокса */
+    height: 2rem;
     appearance: none; /* Убираем стандартный вид чекбокса */
     background-color: #e0e0e0; /* Цвет фона неактивного состояния */
     border-radius: 50%; /* Сделаем чекбокс круглым */
     border: 2px solid #ccc; /* Добавим границу */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
+    cursor: pointer; /* Изменяем курсор */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация */
 }
 
-/* При наведении */
+/* При наведении на чекбокс */
 .status-checkbox:hover {
     background-color: #d1d1d1;
-    transform: scale(1.1); /* Немного увеличиваем при наведении */
+    transform: scale(1.1);
 }
 
 /* Когда чекбокс отмечен */
@@ -223,33 +176,18 @@ input:focus, textarea:focus {
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #221f1f;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s ease, background-color 0.3s ease;
+    color: #221f1f;
 }
 
 /* Показываем галочку, когда чекбокс отмечен */
 .status-checkbox:checked::before {
-    transform: translate(-50%, -50%) scale(1);
-    background-color: #fff;
+    /*transform: translate(-50%, -50%) scale(1);*/
+    background-color: #ffffff;
 }
 
-/* Выполненные задачи */
-.task-item.completed {
-    background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
-    text-decoration: line-through; /* Подчеркивание для выполненных задач */
-    color: #6c757d; /* Серый цвет текста */
-    font-style: italic; /* Курсив для выполненных задач */
-}
-
-.status-checkbox {
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-.status-checkbox:checked {
-    background-color: #2196f3; /* Синий фон при отметке */
-    accent-color: #4caf50; /* Зеленый цвет галочки */
-}
 /* Стили для календаря */
 .calendar-container {
     background: rgba(255, 255, 255, 0.9);
@@ -260,6 +198,7 @@ input:focus, textarea:focus {
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px; /* Добавил отступ снизу */
 }
 
 #current-date, #current-time {
@@ -277,29 +216,42 @@ input:focus, textarea:focus {
 .timer {
     font-size: 1rem;
     font-weight: bold;
-    color: #2196f3; /* Синий цвет */
+    color: #090909; /* Синий цвет */
     transition: color 0.3s ease;
 }
 
 .timer.red {
     color: red; /* Красный цвет, когда время истекло */
 }
+
+/* Стили для важных задач */
+.task-item.important {
+    background: rgba(255, 87, 34, 0.2); /* Легко-красный фон */
+    border: 1px solid #ff5722; /* Красная граница */
+}
+
 /* Для маленьких экранов */
 @media (max-width: 768px) {
+    /* Адаптивность контейнера задач */
     .task-list-container {
         max-width: 100%; /* Убираем ограничение ширины */
         padding: 15px; /* Уменьшаем отступы */
     }
 
+    /* Адаптивность заголовков */
     h1 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
     }
 
+    /* Адаптивность задач */
     .task-item {
         font-size: 0.9rem; /* Уменьшаем размер шрифта */
-        padding: 10px;
+        padding: 10px; /* Уменьшаем отступы */
     }
-    .save-button, .cancel-button {
+
+    /* Адаптивность кнопок */
+    .save-button,
+    .cancel-button {
         width: 100%; /* Полная ширина */
         margin-bottom: 10px; /* Отступ между кнопками */
     }
@@ -308,17 +260,9 @@ input:focus, textarea:focus {
         margin-top: 10px; /* Отступ сверху для второй кнопки */
     }
 
+    /* Адаптивность чекбоксов */
     .status-checkbox {
         width: 1.5rem;
         height: 1.5rem;
-    }
-
-    .save-button, .cancel-button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .save-button + .cancel-button {
-        margin-top: 10px;
     }
 }

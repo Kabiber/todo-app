@@ -16,11 +16,11 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Title'])
-            ->add('description', TextareaType::class, ['label' => 'Description', 'required' => false])
+            ->add('title', TextType::class, ['label' => 'Название'])
+            ->add('description', TextareaType::class, ['label' => 'Описание', 'required' => false])
             ->add('completed', CheckboxType::class, ['label' => 'Completed', 'required' => false])
             ->add('deadline', DateTimeType::class, [ // Поле для дедлайна
-                'label' => 'Deadline',
+                'label' => 'Дедлайн',
                 'widget' => 'single_text', // Виджет для одиночного поля ввода
                 'required' => false,
                 'html5' => true, // Используем HTML5 input type="datetime-local"
