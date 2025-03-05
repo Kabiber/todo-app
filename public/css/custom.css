@@ -19,14 +19,14 @@ h1 {
 /* Стили для навигационной строки */
 .navbar {
     font-family: 'Pacifico', cursive; /* Шрифт Pacifico */
-    background-color: rgba(33, 37, 41, 0.9); /* Темный фон с прозрачностью */
+    background-color: rgba(0, 0, 0, 0.7); /* Темный фон с прозрачностью */
     backdrop-filter: blur(10px); /* Размытие фона */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для навигационной строки */
 }
 
 .navbar-brand, .nav-link {
     color: white !important;
-    font-size: 1.8rem; /* Уменьшил размер шрифта до более подходящего значения */
+    font-size: 1.8rem; /* Размер шрифта */
     font-weight: 600; /* Жирный шрифт */
     letter-spacing: 1px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Легкая тень */
@@ -37,7 +37,35 @@ h1 {
     color: #ffeb3b !important; /* Желтый цвет при наведении */
 }
 
-/* Стили для контейнера списка задач */
+/* Стили для календаря внутри навигационной панели */
+.navbar-calendar {
+    display: flex;
+    flex-direction: column; /* Вертикальное размещение элементов */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white; /* Базовый белый цвет текста */
+    font-family: 'Space Mono', monospace; /* Шрифт Space Mono */
+    font-size: 1rem; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    gap: 5px; /* Отступ между строками */
+    padding: 10px; /* Внутренние отступы */
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный темный фон */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для лучшего выделения */
+}
+
+.navbar-calendar span {
+    color: #ffffff; /* Жёлтый цвет для контраста */
+    font-size: 1rem; /* Размер шрифта */
+}
+
+.navbar-calendar i {
+    font-size: 1.2rem; /* Размер иконок */
+    color: #ffffff; /* Жёлтый цвет для иконок */
+}
+
+/* Контейнер списка задач */
 .task-list-container {
     max-width: 800px; /* Максимальная ширина контейнера */
     margin: 50px auto; /* Отступы и центрирование */
@@ -48,11 +76,6 @@ h1 {
 }
 
 /* Стили для списка задач */
-.task-list {
-    list-style-type: none; /* Убираем маркеры списка */
-    padding: 0; /* Убираем внутренние отступы списка */
-}
-
 .task-item {
     background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
     border: 1px solid #ddd; /* Легкая граница */
@@ -68,9 +91,9 @@ h1 {
 /* Выполненные задачи */
 .task-item.completed {
     background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
-    text-decoration: line-through; !* Подчеркивание для текста *!*/
+    text-decoration: line-through; /* Подчеркивание для выполненных задач */
     color: #6c757d; /* Серый цвет текста */
-    font-style: italic; /* Курсив для текста */
+    font-style: italic; /* Курсив для выполненных задач */
 }
 
 /* Исключаем кнопки из стиля .completed */
@@ -105,41 +128,14 @@ h1 {
 }
 
 /* Для кнопок "Edit" и "Delete" */
-.task-item.completed .btn-warning,
+.task-item.completed .btn-warning {
+    background-color: #ffc107 !important; /* Жёлтый фон */
+    border-color: #ffc107 !important; /* Жёлтая граница */
+}
+
 .task-item.completed .btn-danger {
-    text-decoration: none !important; /* Убедитесь, что нет подчеркивания */
-    color: white !important; /* Текст остаётся белым */
-    font-style: normal !important; /* Нет курсива */
-    background-color: initial !important; /* Возвращаем оригинальный фон */
-    border-color: initial !important; /* Возвращаем оригинальную границу */
-}
-.task-item .btn-warning:hover,
-.task-item .btn-danger:hover {
-    transform: scale(1.1); /* Немного увеличиваем при наведении */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Добавляем тень */
-}
-/* Стили для формы */
-form {
-    max-width: 600px; /* Максимальная ширина формы */
-    margin: 0 auto; /* Центрирование формы */
-    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
-    border-radius: 10px; /* Закругленные углы */
-    padding: 20px; /* Внутренние отступы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для формы */
-}
-
-input, textarea, button {
-    font-family: inherit; /* Наследует шрифт от родительского элемента */
-    font-size: inherit; /* Наследует размер шрифта */
-    padding: 10px; /* Внутренние отступы */
-    border: 1px solid #ccc; /* Легкая граница */
-    border-radius: 5px; /* Закругленные углы */
-    transition: border-color 0.3s ease; /* Анимация границы */
-}
-
-input:focus, textarea:focus {
-    border-color: #2196f3; /* Синяя граница при фокусе */
-    outline: none; /* Убираем стандартный контур */
+    background-color: #dc3545 !important; /* Красный фон */
+    border-color: #dc3545 !important; /* Красная граница */
 }
 
 /* Кастомизация чекбокса */
@@ -176,35 +172,45 @@ input:focus, textarea:focus {
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
-    background-color: #221f1f;
+    background-color: #fff;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.3s ease, background-color 0.3s ease;
-    color: #221f1f;
 }
 
 /* Показываем галочку, когда чекбокс отмечен */
 .status-checkbox:checked::before {
-    /*transform: translate(-50%, -50%) scale(1);*/
-    background-color: #ffffff;
+    transform: translate(-50%, -50%) scale(1);
+    background-color: #fff;
 }
 
-/* Стили для календаря */
-.calendar-container {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px; /* Добавил отступ снизу */
+/* Стили для формы */
+form {
+    max-width: 600px; /* Максимальная ширина формы */
+    margin: 0 auto; /* Центрирование формы */
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для формы */
 }
 
-#current-date, #current-time {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
+input, textarea, button {
+    font-family: inherit; /* Наследует шрифт от родительского элемента */
+    font-size: inherit; /* Наследует размер шрифта */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Легкая граница */
+    border-radius: 5px; /* Закругленные углы */
+    transition: border-color 0.3s ease; /* Анимация границы */
+}
+
+input:focus, textarea:focus {
+    border-color: #2196f3; /* Синяя граница при фокусе */
+    outline: none; /* Убираем стандартный контур */
+}
+
+/* Стили для важных задач */
+.task-item.important {
+    background: rgba(255, 87, 34, 0.2); /* Легко-красный фон */
+    border: 1px solid #ff5722; /* Красная граница */
 }
 
 /* Стили для таймера */
@@ -223,13 +229,30 @@ input:focus, textarea:focus {
 .timer.red {
     color: red; /* Красный цвет, когда время истекло */
 }
-
-/* Стили для важных задач */
-.task-item.important {
-    background: rgba(255, 87, 34, 0.2); /* Легко-красный фон */
-    border: 1px solid #ff5722; /* Красная граница */
+/* Стили для кнопки-иконки календаря */
+.calendar-btn {
+    font-size: 1.2rem; /* Размер иконки */
+    color: #ffeb3b; /* Жёлтый цвет для контраста */
+    border: none; /* Убираем границу */
+    background-color: transparent; /* Прозрачный фон */
+    cursor: pointer; /* Изменяем курсор */
+    transition: transform 0.3s ease; /* Анимация при наведении */
 }
 
+.calendar-btn:hover {
+    transform: scale(1.2); /* Небольшое увеличение при наведении */
+}
+
+/* Стили для виджета календаря */
+.calendar-widget {
+    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон */
+    border: 1px solid #ddd; /* Легкая граница */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 10px; /* Внутренние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для выделения */
+    max-width: 300px; /* Максимальная ширина */
+    text-align: center; /* Выравнивание по центру */
+}
 /* Для маленьких экранов */
 @media (max-width: 768px) {
     /* Адаптивность контейнера задач */
@@ -237,7 +260,21 @@ input:focus, textarea:focus {
         max-width: 100%; /* Убираем ограничение ширины */
         padding: 15px; /* Уменьшаем отступы */
     }
+    .navbar-calendar {
+        flex-direction: row; /* Размещаем элементы горизонтально */
+        justify-content: space-between; /* Распределяем элементы равномерно */
+        width: 100%; /* Полная ширина */
+        padding: 5px; /* Уменьшаем отступы */
+    }
 
+    .calendar-btn {
+        font-size: 1rem; /* Уменьшаем размер иконки */
+    }
+
+    .calendar-widget {
+        max-width: 100%; /* Полная ширина */
+        margin-top: 10px; /* Отступ сверху */
+    }
     /* Адаптивность заголовков */
     h1 {
         font-size: 1.8rem; /* Уменьшаем размер заголовка */
@@ -249,20 +286,17 @@ input:focus, textarea:focus {
         padding: 10px; /* Уменьшаем отступы */
     }
 
-    /* Адаптивность кнопок */
-    .save-button,
-    .cancel-button {
-        width: 100%; /* Полная ширина */
-        margin-bottom: 10px; /* Отступ между кнопками */
-    }
-
-    .save-button + .cancel-button {
-        margin-top: 10px; /* Отступ сверху для второй кнопки */
-    }
-
     /* Адаптивность чекбоксов */
     .status-checkbox {
         width: 1.5rem;
         height: 1.5rem;
+    }
+
+    /* Адаптивность календаря */
+    .navbar-calendar {
+        flex-direction: row; /* Размещаем элементы горизонтально */
+        justify-content: space-between; /* Распределяем элементы равномерно */
+        width: 100%; /* Полная ширина */
+        padding: 5px; /* Уменьшаем отступы */
     }
 }

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Task List{% endblock %}
+{% block title %}Лист задач{% endblock %}
 {% block body %}
     <h1 class="text-center mb-4 space-mono-bold">Лист задач</h1>
 
-    <!-- Календарь с актуальной датой и временем -->
-    <div class="calendar-container bg-white rounded p-3 mb-4" style="max-width: 300px; margin-left: auto; margin-right: auto;">
-        <h2 class="text-center mb-4 space-mono-bold">Сегодняшняя дата</h2>
-        <h3 class="text-center" id="current-date"></h3>
-        <p class="text-center" id="current-time"></p>
-    </div>
+{#    <!-- Календарь с актуальной датой и временем -->#}
+{#    <div class="calendar-container bg-white rounded p-3 mb-4" style="max-width: 300px; margin-left: auto; margin-right: auto;">#}
+{#        <h2 class="text-center mb-4 space-mono-bold">Сегодняшняя дата</h2>#}
+{#        <h3 class="text-center" id="current-date"></h3>#}
+{#        <p class="text-center" id="current-time"></p>#}
+{#    </div>#}
 
     <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Создать новую задачу</a>
 
