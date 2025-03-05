@@ -23,6 +23,9 @@ class Task
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $completed = false;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)] // Добавляем deadline
+    private ?\DateTimeInterface $deadline = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,7 +55,6 @@ class Task
         return $this;
     }
 
-    // Геттер и сеттер для свойства completed
     public function isCompleted(): bool
     {
         return $this->completed;
@@ -61,6 +63,18 @@ class Task
     public function setCompleted(bool $completed): self
     {
         $this->completed = $completed;
+
+        return $this;
+    }
+
+    public function getDeadline(): ?\DateTimeInterface
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline(?\DateTimeInterface $deadline): self
+    {
+        $this->deadline = $deadline;
 
         return $this;
     }

@@ -250,7 +250,40 @@ input:focus, textarea:focus {
     background-color: #2196f3; /* Синий фон при отметке */
     accent-color: #4caf50; /* Зеленый цвет галочки */
 }
+/* Стили для календаря */
+.calendar-container {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#current-date, #current-time {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Стили для таймера */
+.timer-container {
+    min-width: 120px;
+    text-align: right;
+}
+
+.timer {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2196f3; /* Синий цвет */
+    transition: color 0.3s ease;
+}
+
+.timer.red {
+    color: red; /* Красный цвет, когда время истекло */
+}
 /* Для маленьких экранов */
 @media (max-width: 768px) {
     .task-list-container {
@@ -278,5 +311,14 @@ input:focus, textarea:focus {
     .status-checkbox {
         width: 1.5rem;
         height: 1.5rem;
+    }
+
+    .save-button, .cancel-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .save-button + .cancel-button {
+        margin-top: 10px;
     }
 }

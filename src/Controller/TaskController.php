@@ -76,9 +76,11 @@ class TaskController extends AbstractController
     {
         // Инвертируем статус задачи
         $task->setCompleted(!$task->isCompleted());
+
+        // Сохраняем изменения
         $entityManager->flush();
 
-        return $this->json(['success' => true]); // Возвращаем JSON-ответ
+        return $this->json(['success' => true]); // Возвращаем успешный ответ
     }
 //    #[Route('/toggle/{id}', name: 'toggle_status')]
 //    public function toggleStatus(

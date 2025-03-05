@@ -24,11 +24,20 @@
             {{ form_widget(form.completed, {'attr': {'class': 'form-check-input'}}) }}
         </div>
 
-        <!-- Обновленные кнопки -->
+        <!-- Календарь -->
+
+        <div class="mb-3">
+            {{ form_label(form.deadline) }}
+            {{ form_widget(form.deadline, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.deadline) }}
+        </div>
+
+        <!-- Кнопки "Сохранить" и "Отмена" -->
         <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary flex-fill me-2 save-button">Сохранить</button>
-            <a href="{{ path('task_index') }}" class="btn btn-light flex-fill cancel-button">Отмена</a>
+            <button type="submit" class="btn btn-primary flex-grow-1 me-2 save-button" style="max-width: 48%;">Сохранить</button>
+            <a href="{{ path('task_index') }}" class="btn btn-secondary flex-grow-1 cancel-button" style="max-width: 48%;">Отмена</a>
         </div>
         {{ form_end(form) }}
+
     </form>
 {% endblock %}
