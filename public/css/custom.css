@@ -188,6 +188,69 @@ input:focus, textarea:focus {
     background-color: #e9ecef; /* Сlightly darker gray при наведении */
 }
 
+/* Кастомизация чекбокса */
+.status-checkbox {
+    position: relative;
+    width: 6em; /* Увеличиваем ширину */
+    height: 6em; /* Увеличиваем высоту */
+    margin-right: 10px; /* Отступ справа */
+    cursor: pointer; /* Изменяем курсор */
+    appearance: none; /* Убираем стандартный вид чекбокса */
+    background-color: #e0e0e0; /* Цвет фона неактивного состояния */
+    border-radius: 50%; /* Сделаем чекбокс круглым */
+    border: 2px solid #ccc; /* Добавим границу */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
+}
+
+/* При наведении */
+.status-checkbox:hover {
+    background-color: #d1d1d1;
+    transform: scale(1.1); /* Немного увеличиваем при наведении */
+}
+
+/* Когда чекбокс отмечен */
+.status-checkbox:checked {
+    background-color: #2196f3; /* Синий цвет для активного состояния */
+    border-color: #2196f3;
+}
+
+/* Галочка внутри чекбокса */
+.status-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Показываем галочку, когда чекбокс отмечен */
+.status-checkbox:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+    background-color: #fff;
+}
+
+/* Выполненные задачи */
+.task-item.completed {
+    background: rgba(139, 195, 74, 0.2); /* Зеленоватый полупрозрачный фон */
+    text-decoration: line-through; /* Подчеркивание для выполненных задач */
+    color: #6c757d; /* Серый цвет текста */
+    font-style: italic; /* Курсив для выполненных задач */
+}
+
+.status-checkbox {
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.status-checkbox:checked {
+    background-color: #2196f3; /* Синий фон при отметке */
+    accent-color: #4caf50; /* Зеленый цвет галочки */
+}
+
 /* Для маленьких экранов */
 @media (max-width: 768px) {
     .task-list-container {
@@ -210,5 +273,10 @@ input:focus, textarea:focus {
 
     .save-button + .cancel-button {
         margin-top: 10px; /* Отступ сверху для второй кнопки */
+    }
+
+    .status-checkbox {
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }

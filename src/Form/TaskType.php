@@ -24,6 +24,9 @@ class TaskType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Task::class,
+            'csrf_protection' => true, // Убедитесь, что CSRF включён
+            'csrf_field_name' => '_token', // Имя поля токена
+            'csrf_token_id' => 'task_form', // ID токена для формы
         ]);
     }
 }

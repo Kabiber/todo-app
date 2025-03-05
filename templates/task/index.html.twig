@@ -1,35 +1,216 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Лист задач{% endblock %}
+{% block title %}Task List{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mb-4 space-mono-bold">Лист задач</h1>
+    <h1 class="text-center mb-4 space-mono-bold">Task List</h1>
 
-    <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Создать новую задачу</a>
+    <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Create New Task</a>
 
     <ul class="list-unstyled">
         {% for task in tasks %}
             <li class="task-item {% if task.isCompleted %}completed{% endif %}">
-                <strong class="space-mono-bold">{{ task.title }}</strong> -
-                <span class="space-mono-regular">{{ task.description }}</span>
-                <div class="mt-2 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center justify-content-between">
+                    <!-- Кастомный чекбокс -->
                     <div>
-                        <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning me-2 space-mono-regular">Изменить</a>
-                        <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger space-mono-regular">Удалить</a>
+                        <input
+                                type="checkbox"
+                                class="form-check-input status-checkbox me-2"
+                                data-task-id="{{ task.id }}"
+                                {% if task.isCompleted %}checked{% endif %}>
+                        <strong class="space-mono-bold">{{ task.title }}</strong> -
+                        <span class="space-mono-regular">{{ task.description }}</span>
                     </div>
-                    <form action="{{ path('task_toggle_status', { id: task.id }) }}" method="post" style="display: inline;">
-                        <button type="submit" class="btn btn-sm {% if task.isCompleted %}btn-success{% else %}btn-secondary{% endif %} space-mono-regular">
-                            {% if task.isCompleted %}
-                                Не выполнено
-                            {% else %}
-                                Выполнено
-                            {% endif %}
-                        </button>
-                    </form>
+
+                    <!-- Кнопки "Edit" и "Delete" -->
+                    <div>
+                        <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning me-2 space-mono-regular">Edit</a>
+                        <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger space-mono-regular">Delete</a>
+                    </div>
                 </div>
             </li>
         {% else %}
-            <p class="text-center space-mono-regular">Нет задач.</p>
+            <p class="text-center space-mono-regular">No tasks found.</p>
         {% endfor %}
     </ul>
+
+    <!-- JavaScript для работы с чекбоксами -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.status-checkbox');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', async (event) => {
+                    const taskId = event.target.dataset.taskId;
+
+                    try {
+                        const response = await fetch(`{{ path('task_toggle_status', {'id': '__id__'}) }}`.replace('__id__', taskId), {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to update task status.');
+                        }
+
+                        // Обновляем класс задачи в зависимости от состояния чекбокса
+                        const taskItem = event.target.closest('.task-item');
+                        if (event.target.checked) {
+                            taskItem.classList.add('completed');
+                        } else {
+                            taskItem.classList.remove('completed');
+                        }
+                    } catch (error) {
+                        alert(error.message);
+                        event.target.checked = !event.target.checked; // Возвращаем исходное состояние чекбокса
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
+
+
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Лист задач{% endblock %}#}
+
+{#{% block body %}#}
+{#    <h1 class="text-center mb-4 space-mono-bold">Лист задач</h1>#}
+
+{#    <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Создать новую задачу</a>#}
+
+{#    <ul class="list-unstyled">#}
+{#        {% for task in tasks %}#}
+{#            <li class="task-item {% if task.isCompleted %}completed{% endif %}">#}
+{#                <div class="d-flex align-items-center justify-content-between">#}
+{#                    <!-- Чекбокс для изменения статуса -->#}
+{#                    <div>#}
+{#                        <input#}
+{#                                type="checkbox"#}
+{#                                class="form-check-input status-checkbox me-2"#}
+{#                                data-task-id="{{ task.id }}"#}
+{#                                {% if task.isCompleted %}checked{% endif %}>#}
+{#                        <strong class="space-mono-bold">{{ task.title }}</strong> -#}
+{#                        <span class="space-mono-regular">{{ task.description }}</span>#}
+{#                    </div>#}
+
+{#                    <!-- Кнопки "Edit" и "Delete" -->#}
+{#                    <div>#}
+{#                        <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning me-2 space-mono-regular">Изменить</a>#}
+{#                        <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger space-mono-regular">Удалить</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <p class="text-center space-mono-regular">No tasks found.</p>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+{#    <!-- JavaScript для работы с чекбоксами -->#}
+{#    <script>#}
+{#        document.addEventListener('DOMContentLoaded', () => {#}
+{#            const checkboxes = document.querySelectorAll('.status-checkbox');#}
+
+{#            checkboxes.forEach(checkbox => {#}
+{#                checkbox.addEventListener('change', async (event) => {#}
+{#                    const taskId = event.target.dataset.taskId;#}
+
+{#                    try {#}
+{#                        const response = await fetch(`{{ path('task_toggle_status', {'id': '__id__'}) }}`.replace('__id__', taskId), {#}
+{#                            method: 'POST',#}
+{#                            headers: {#}
+{#                                'Content-Type': 'application/json',#}
+{#                            },#}
+{#                        });#}
+
+{#                        if (!response.ok) {#}
+{#                            throw new Error('Failed to update task status.');#}
+{#                        }#}
+
+{#                        // Получаем родительский элемент задачи#}
+{#                        const taskItem = event.target.closest('.task-item');#}
+
+{#                        // Обновляем класс задачи в зависимости от состояния чекбокса#}
+{#                        if (event.target.checked) {#}
+{#                            taskItem.classList.add('completed');#}
+{#                        } else {#}
+{#                            taskItem.classList.remove('completed');#}
+{#                        }#}
+{#                    } catch (error) {#}
+{#                        alert(error.message);#}
+{#                        event.target.checked = !event.target.checked; // Возвращаем исходное состояние чекбокса#}
+{#                    }#}
+{#                });#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
+
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Task List{% endblock %}#}
+
+{#{% block body %}#}
+{#    <h1 class="text-center mb-4 space-mono-bold">Task List</h1>#}
+
+{#    <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Create New Task</a>#}
+
+{#    <ul class="list-unstyled">#}
+{#        {% for task in tasks %}#}
+{#            <li class="task-item {% if task.isCompleted %}completed{% endif %}">#}
+{#                <div class="d-flex align-items-center justify-content-between">#}
+{#                    <!-- Чекбокс для изменения статуса -->#}
+{#                    <div>#}
+{#                        <input#}
+{#                                type="checkbox"#}
+{#                                class="form-check-input status-checkbox me-2"#}
+{#                                data-task-id="{{ task.id }}"#}
+{#                                {% if task.isCompleted %}checked{% endif %}>#}
+{#                        <strong class="space-mono-bold">{{ task.title }}</strong> -#}
+{#                        <span class="space-mono-regular">{{ task.description }}</span>#}
+{#                    </div>#}
+
+{#                    <!-- Кнопки "Edit" и "Delete" -->#}
+{#                    <div>#}
+{#                        <a href="{{ path('task_edit', { id: task.id }) }}" class="btn btn-sm btn-warning me-2 space-mono-regular">Edit</a>#}
+{#                        <a href="{{ path('task_delete', { id: task.id }) }}" class="btn btn-sm btn-danger space-mono-regular">Delete</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <p class="text-center space-mono-regular">No tasks found.</p>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+{#    <!-- JavaScript для работы с чекбоксами -->#}
+{#    <script>#}
+{#        document.addEventListener('DOMContentLoaded', () => {#}
+{#            const checkboxes = document.querySelectorAll('.status-checkbox');#}
+
+{#            checkboxes.forEach(checkbox => {#}
+{#                checkbox.addEventListener('change', async (event) => {#}
+{#                    const taskId = event.target.dataset.taskId;#}
+{#                    const isChecked = event.target.checked;#}
+
+{#                    // Отправляем запрос на сервер#}
+{#                    const response = await fetch(`{{ path('task_toggle_status', {'id': '__id__'}) }}`.replace('__id__', taskId), {#}
+{#                        method: 'POST',#}
+{#                        headers: {#}
+{#                            'X-CSRF-Token': '{{ csrf_token('task_toggle') }}' // Добавьте CSRF-токен, если используете его#}
+{#                        }#}
+{#                    });#}
+
+{#                    if (!response.ok) {#}
+{#                        alert('Failed to update task status.');#}
+{#                        event.target.checked = !isChecked; // Возвращаем исходное состояние чекбокса#}
+{#                    }#}
+{#                });#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
