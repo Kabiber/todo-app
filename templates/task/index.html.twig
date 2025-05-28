@@ -4,13 +4,6 @@
 {% block body %}
     <h1 class="text-center mb-4 space-mono-bold">Лист задач</h1>
 
-{#    <!-- Календарь с актуальной датой и временем -->#}
-{#    <div class="calendar-container bg-white rounded p-3 mb-4" style="max-width: 300px; margin-left: auto; margin-right: auto;">#}
-{#        <h2 class="text-center mb-4 space-mono-bold">Сегодняшняя дата</h2>#}
-{#        <h3 class="text-center" id="current-date"></h3>#}
-{#        <p class="text-center" id="current-time"></p>#}
-{#    </div>#}
-
     <a href="{{ path('task_create') }}" class="btn btn-primary d-block mb-3 space-mono-regular">Создать новую задачу</a>
 
     <ul class="list-unstyled">
@@ -52,18 +45,10 @@
     <!-- JavaScript для таймера и чекбокса -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Обновление даты и времени на календаре
-            function updateCalendar() {
-                const now = new Date();
-                document.getElementById('current-date').textContent = now.toLocaleDateString();
-                document.getElementById('current-time').textContent = now.toLocaleTimeString();
-            }
-
-            setInterval(updateCalendar, 1000);
-            updateCalendar();
-
             // Таймер обратного отсчета до дедлайна
             const timers = document.querySelectorAll('.timer');
+            if (timers.length === 0) return;
+
             timers.forEach(timer => {
                 const deadline = new Date(timer.dataset.deadline);
 
@@ -72,7 +57,7 @@
                     const diff = deadline - now;
 
                     if (diff <= 0) {
-                        timer.textContent = 'Time is up!';
+                        timer.textContent = 'Время истекло!';
                         timer.style.color = 'red';
                         return;
                     }
@@ -92,15 +77,19 @@
             // Обработка чекбоксов
             const checkboxes = document.querySelectorAll('.status-checkbox');
 
+            // Получаем CSRF-токен из метатега
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', async (event) => {
                     const taskId = event.target.dataset.taskId;
 
                     try {
-                        const response = await fetch(`{{ path('task_toggle_status', {'id': '__id__'}) }}`.replace('__id__', taskId), {
+                        const response = await fetch(`/task/toggle/${taskId}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
+                                'X-CSRF-Token': csrfToken, // Добавляем CSRF-токен
                             },
                         });
 
@@ -124,4 +113,3 @@
         });
     </script>
 {% endblock %}
-

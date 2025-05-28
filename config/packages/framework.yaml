@@ -1,4 +1,5 @@
 framework:
-        assets:
-            base_path: '%env(APP_ASSETS_BASE_PATH)%'
-        csrf_protection: true # Включите защиту CSR
+  assets:
+    base_path: '%env(APP_ASSETS_BASE_PATH)%'
+
+  csrf_protection: true # Включите защиту CSRF

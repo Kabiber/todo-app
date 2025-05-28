@@ -13,9 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
+
 #[Route('/task', name: 'task_')]
 class TaskController extends AbstractController
 {
+
     #[Route('/', name: 'index')]
     public function index(TaskRepository $taskRepository): Response
     {
@@ -82,26 +84,5 @@ class TaskController extends AbstractController
 
         return $this->json(['success' => true]); // Возвращаем успешный ответ
     }
-//    #[Route('/toggle/{id}', name: 'toggle_status')]
-//    public function toggleStatus(
-//        Task $task,
-//        EntityManagerInterface $entityManager,
-//        Request $request,
-//        TokenGeneratorInterface $tokenGenerator,
-//        TokenStorageInterface $tokenStorage
-//    ): Response {
-//        // Проверка CSRF-токена
-//        $submittedToken = $request->headers->get('X-CSRF-Token');
-//        $expectedToken = $tokenGenerator->generateCsrfToken('task_toggle');
-//
-//        if (!$tokenStorage->getToken('task_toggle') || !hash_equals($expectedToken, $submittedToken)) {
-//            return $this->json(['error' => 'Invalid CSRF token'], 400);
-//        }
-//
-//        // Инвертируем статус задачи
-//        $task->setCompleted(!$task->isCompleted());
-//        $entityManager->flush();
-//
-//        return $this->json(['success' => true]);
-//    }
+
 }

@@ -143,7 +143,7 @@ h1 {
     position: relative;
     width: 2rem; /* Увеличиваем размер чекбокса */
     height: 2rem;
-    appearance: none; /* Убираем стандартный вид чекбокса */
+    appearance: auto; /* Убираем стандартный вид чекбокса */
     background-color: #e0e0e0; /* Цвет фона неактивного состояния */
     border-radius: 50%; /* Сделаем чекбокс круглым */
     border: 2px solid #ccc; /* Добавим границу */
@@ -178,10 +178,10 @@ h1 {
 }
 
 /* Показываем галочку, когда чекбокс отмечен */
-.status-checkbox:checked::before {
-    transform: translate(-50%, -50%) scale(1);
-    background-color: #fff;
-}
+/*.status-checkbox:checked::before {*/
+/*    transform: translate(-50%, -50%) scale(1);*/
+/*    background-color: #fff;*/
+/*}*/
 
 /* Стили для формы */
 form {
@@ -229,7 +229,6 @@ input:focus, textarea:focus {
 .timer.red {
     color: red; /* Красный цвет, когда время истекло */
 }
-
 /* Для маленьких экранов */
 @media (max-width: 768px) {
     /* Адаптивность контейнера задач */
